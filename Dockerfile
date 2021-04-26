@@ -12,7 +12,7 @@ COPY console_libraries/                     /usr/share/prometheus/console_librar
 COPY consoles/                              /usr/share/prometheus/consoles/
 COPY LICENSE                                /LICENSE
 COPY NOTICE                                 /NOTICE
-COPY npm_licenses.tar.bz2                   /npm_licenses.tar.bz2
+#COPY npm_licenses.tar.bz2                   /npm_licenses.tar.bz2
 
 RUN ln -s /usr/share/prometheus/console_libraries /usr/share/prometheus/consoles/ /etc/prometheus/
 RUN mkdir -p /prometheus && \

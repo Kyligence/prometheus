@@ -1,4 +1,4 @@
-FROM prom/prometheus:v2.19.2
+FROM prom/prometheus-linux-amd64:HEAD
 
 COPY entrypoint.sh /entrypoint.sh
 USER       root	
