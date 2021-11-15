@@ -1,0 +1,11 @@
+/prometheus/log/log {
+daily
+rotate 7
+notifempty
+compress
+delaycompress
+postrotate
+  killall -HUP prometheus
+endscript
+}
+

@@ -1,6 +1,6 @@
 ARG ARCH="amd64"
 ARG OS="linux"
-FROM quay.io/prometheus/busybox-${OS}-${ARCH}:latest
+FROM ubuntu:18.04
 LABEL maintainer="The Prometheus Authors <prometheus-developers@googlegroups.com>"
 
 ARG ARCH="amd64"
@@ -17,6 +17,16 @@ COPY NOTICE                                 /NOTICE
 RUN ln -s /usr/share/prometheus/console_libraries /usr/share/prometheus/consoles/ /etc/prometheus/
 RUN mkdir -p /prometheus && \
     chown -R nobody:nobody etc/prometheus /prometheus
+
+RUN apt-get update && \
+    apt-get install -y logrotate && \
+    apt-get install -y rsyslog && \
+    apt-get install -y psmisc && \
+    apt-get clean && \
+    rm -f /etc/cron.daily/apt-compat /etc/cron.daily/dpkg
+
+COPY crontab /etc/crontab
+COPY prometheus /etc/logrotate.d/prometheus
 
 USER       nobody
 EXPOSE     9090
