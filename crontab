@@ -1,0 +1,4 @@
+SHELL=/bin/sh
+
+0 1 * * *   root    run-parts --report /etc/cron.daily
+
